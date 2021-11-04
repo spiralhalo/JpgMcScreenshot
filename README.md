@@ -1,9 +1,9 @@
-# Fabric Example Mod
+# JPG Screenshot
 
-## Setup
+A minecraft fabric mod that saves all screenshots as jpg.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+**Is this compatible with [other screenshot mod]?**
 
-## License
+I have no idea.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+It does consist of very minimal mixins to hopefully minimize conflict tho.
