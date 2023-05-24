@@ -12,7 +12,7 @@ public class JpgScreenshotMod implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("jpgscreenshot");
     public static final int QUALITY = 80; // 1-100
 
-    public static final KeyMapping PNG_HOLD_DOWN = new KeyMapping("key.jpgscreenshot.png_hold_down", InputConstants.KEY_LCONTROL, "key.jpgscreenshot.category");
+    public static final KeyMapping PNG_HOLD_DOWN = new KeyMapping("key.jpgscreenshot.png_hold_down", InputConstants.KEY_LALT, "key.jpgscreenshot.category");
 
     @Override
     public void onInitializeClient() {

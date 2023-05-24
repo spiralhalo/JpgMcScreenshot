@@ -23,7 +23,7 @@ public class MixinNativeImage {
         }
     }
 
-    @Redirect(method = "writeToChannel", at = @At(value = "INVOKE", target = "Lorg/lwjgl/stb/STBImageWrite;nstbi_write_png_to_func(JJIIIJI)I"))
+    @Redirect(method = "writeToChannel", at = @At(value = "INVOKE", target = "Lorg/lwjgl/stb/STBImageWrite;nstbi_write_png_to_func(JJIIIJI)I", remap = false))
     private int writeJpg(long func, long context, int w, int h, int comp, long data, int stride_in_bytes) {
         if (writeToJpg) {
             writeToJpg = false;
