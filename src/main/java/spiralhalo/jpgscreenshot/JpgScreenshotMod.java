@@ -1,6 +1,8 @@
 package spiralhalo.jpgscreenshot;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +18,11 @@ public class JpgScreenshotMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        try {
+            KeyBindingHelper.registerKeyBinding(PNG_HOLD_DOWN);
+        } catch (Throwable ignored) {
+        }
+
         LOGGER.info("JPG Screenshot is active.");
     }
 }
