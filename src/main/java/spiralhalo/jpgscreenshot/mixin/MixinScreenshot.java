@@ -10,7 +10,7 @@ import java.io.File;
 
 @Mixin(Screenshot.class)
 public class MixinScreenshot {
-    @Redirect(method = "getFile", at = @At(value = "NEW", target = "java/io/File" ), require = 1)
+    @Redirect(method = "getFile", at = @At(value = "NEW", target = "java/io/File", remap = false), require = 1)
     private static File createFile(File parent, String child) {
         if (JpgScreenshotMod.PNG_HOLD_DOWN.isDown()) {
             return new File(parent, child);
