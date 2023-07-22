@@ -1,4 +1,6 @@
 {
+  "modmenu.nameTranslation.jpgscreenshot": "Tangkapan Layar JPG",
+  "modmenu.descriptionTranslation.jpgscreenshot": "Simpan tangkapan layar sebagai JPG, jika berfungsi sebagaimana semestinya",
   "key.jpgscreenshot.category": "Tangkapan Layar JPG",
   "key.jpgscreenshot.png_hold_down": "Tahan Untuk Simpan Sebagai .png"
 }
