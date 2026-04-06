@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "JPG Screenshot",
-  "description": "Saves all screenshot as JPG, if it works properly",
+  "description": "Saves screenshot as JPG, reduces file size by roughly 80%.",
   "authors": [
     "spiralhalo"
   ],
@@ -28,7 +28,7 @@
 
   "depends": {
     "fabricloader": "*",
-    "minecraft": "*",
+    "minecraft": ">=26.1",
     "java": ">=16"
   },
   "suggests": {
