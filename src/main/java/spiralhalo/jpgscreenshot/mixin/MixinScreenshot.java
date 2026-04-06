@@ -12,7 +12,7 @@ import java.io.File;
 public class MixinScreenshot {
     @Redirect(method = "getFile", at = @At(value = "NEW", target = "java/io/File", remap = false), require = 1)
     private static File createFile(File parent, String child) {
-        if (JpgScreenshotMod.PNG_HOLD_DOWN.isDown()) {
+        if (JpgScreenshotMod.saveAsPng()) {
             return new File(parent, child);
         } else {
             return new File(parent, child.replace(".png", ".jpg"));

@@ -1,8 +1,7 @@
 package spiralhalo.jpgscreenshot;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,42 +9,37 @@ import org.apache.logging.log4j.Logger;
 import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.KeyMapping;
+import net.minecraft.resources.Identifier;
 
 public class JpgScreenshotMod implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("jpgscreenshot");
-    public static final int QUALITY = 80; // 1-100
+    public static final int QUALITY = 90; // 1-100
 
-    public static final KeyMapping PNG_HOLD_DOWN;
+    private static Object PNG_HOLD_DOWN = null;
 
-    static {
-        final boolean devEnv = FabricLoader.getInstance().isDevelopmentEnvironment();
-
-        final String langKey;
-        final String langCat;
-
-        if (FabricLoader.getInstance().isModLoaded("fabric-resource-loader-v0")) {
-            langKey = "key.jpgscreenshot.png_hold_down";
-            langCat = "key.jpgscreenshot.category";
-
-            if (devEnv) {
-                LOGGER.info("Fabric resource loader is present.");
-            }
-        } else {
-            langKey = "Hold to Save as .png";
-            langCat = "JPG Screenshot";
-
-            LOGGER.info("JPG Screenshot couldn't find fabric resource loader. Falling back to English");
+    public static boolean saveAsPng() {
+        try {
+            return ((KeyMapping) JpgScreenshotMod.PNG_HOLD_DOWN).isDown();
+        } catch (Throwable ignored) {
+            return false;
         }
-
-        PNG_HOLD_DOWN = new KeyMapping(langKey, InputConstants.KEY_LALT, langCat);
     }
 
     @Override
     public void onInitializeClient() {
+        boolean keymapping_made = false;
         try {
-            KeyBindingHelper.registerKeyBinding(PNG_HOLD_DOWN);
+            final String langKey = "key.jpgscreenshot.png_hold_down";
+            final Identifier langCat = Identifier.fromNamespaceAndPath("jpgscreenshot", "keybinding");
+            PNG_HOLD_DOWN = new KeyMapping(langKey, InputConstants.KEY_LCONTROL, KeyMapping.Category.register(langCat));
+            keymapping_made = true;
+            KeyMappingHelper.registerKeyMapping((KeyMapping) PNG_HOLD_DOWN);
         } catch (Throwable ignored) {
-            // LOGGER.info("JPG Screenshot was unable to register key binding. This is optional and requires Fabric API");
+            if (keymapping_made) {
+                LOGGER.info("JPG Screenshot was unable to register key binding. This is optional and requires Fabric API.");
+            } else {
+                LOGGER.info("JPG Screenshot failed to register key binding in this Minecraft version.");
+            }
         }
 
         LOGGER.info("JPG Screenshot is active.");
